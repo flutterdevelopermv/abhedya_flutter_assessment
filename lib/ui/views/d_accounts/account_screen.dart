@@ -1,11 +1,13 @@
 import 'package:abhedya_flutter_assessment/data/models/account.dart';
+import 'package:abhedya_flutter_assessment/ui/routes/go_routes.dart';
 import 'package:abhedya_flutter_assessment/ui/transactions_screen.dart';
 import 'package:abhedya_flutter_assessment/ui/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+
+import 'package:go_router/go_router.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
-import '../data/repositories/graph_ql.dart';
+import '../../../data/repositories/graph_ql.dart';
 
 class AccountScreen extends StatelessWidget {
   const AccountScreen({super.key});
@@ -47,7 +49,7 @@ class AccountScreen extends StatelessWidget {
                             ],
                           ),
                           onTap: () {
-                            Get.to(() => TransactionsScreen(account));
+                            context.goNamed(Routes.transactions,extra: TransactionsScreen(account));
                           },
                         )),
                       )

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:intl/intl.dart';
 
-import '../data/models/profile.dart';
-import '../data/repositories/graph_ql.dart';
+import '../../../data/models/profile.dart';
+import '../../../data/repositories/graph_ql.dart';
 
 class HomeScreen extends StatelessWidget {
   final String username;

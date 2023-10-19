@@ -1,5 +1,10 @@
-import 'package:get/get.dart';
+import 'package:flutter/widgets.dart';
 
 extension Widths on num {
-  double get s => (Get.width * this / 375);
+  double get s => (screenSize.width * this / 375);
 }
+
+//
+Size screenSize = MediaQueryData.fromView(
+        WidgetsBinding.instance.platformDispatcher.views.first)
+    .size;

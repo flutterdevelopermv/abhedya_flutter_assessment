@@ -3,10 +3,9 @@ import 'package:abhedya_flutter_assessment/data/repositories/graph_ql.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
-import 'ui/login_screen.dart';
 import 'package:go_router/go_router.dart';
 
-import 'ui/main_screen.dart';
+import 'ui/routes/go_routes.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,17 +23,8 @@ class MyApp extends StatelessWidget {
       child: MaterialApp.router(
         title: 'Phaneendra Assessment',
 
-        routerConfig: GoRouter(initialLocation: '/', routes: [
-          GoRoute(
-            path: "/",
-            builder: (context, state) => LoginScreen(),
-          ),
-          GoRoute(
-              path: "/main",
-              name: "main",
-              builder: (context, state) =>
-                  MainScreen(state.pathParameters['username'] ?? ''))
-        ]),
+        routerConfig: GoRouter(
+            initialLocation: Routes.initialRoute, routes: Routes.routesTree),
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,

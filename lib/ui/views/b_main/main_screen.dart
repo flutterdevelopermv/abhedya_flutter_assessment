@@ -1,10 +1,9 @@
-import 'package:abhedya_flutter_assessment/ui/account_screen.dart';
-import 'package:abhedya_flutter_assessment/ui/home_screen.dart';
-import 'package:abhedya_flutter_assessment/ui/services_screen.dart';
+import 'package:abhedya_flutter_assessment/ui/views/d_accounts/account_screen.dart';
+import 'package:abhedya_flutter_assessment/ui/views/c_home/home_screen.dart';
+import 'package:abhedya_flutter_assessment/ui/views/e_services/services_screen.dart';
 import 'package:abhedya_flutter_assessment/ui/widgets/svg_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 
 class MainScreen extends StatelessWidget {
   final String username;
@@ -17,25 +16,25 @@ class MainScreen extends StatelessWidget {
     "Services": [SvgAssets.shapeOutline, SvgAssets.shape],
   };
   //
-  final _currentIndex = 0.obs;
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => Scaffold(
+    int currentIndex = 0;
+    return Scaffold(
         body: [
           HomeScreen(username),
           const AccountScreen(),
           const ServicesScreen()
-        ][_currentIndex.value],
+        ][currentIndex],
         bottomNavigationBar: BottomNavigationBar(
-            currentIndex: _currentIndex.value,
+            currentIndex: currentIndex,
             onTap: (value) {
-              _currentIndex.value = value;
+              currentIndex = value;
             },
             items: [
               for (var entry in bottomIcons.entries)
                 BottomNavigationBarItem(
                     icon: SvgPicture.asset(entry.value.last), label: entry.key)
-            ])));
+            ]));
   }
 }

@@ -2,11 +2,12 @@ import 'package:abhedya_flutter_assessment/data/models/contact.dart';
 import 'package:abhedya_flutter_assessment/data/models/statement.dart';
 import 'package:abhedya_flutter_assessment/ui/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:intl/intl.dart';
 
-import '../data/repositories/graph_ql.dart';
+import '../../../data/repositories/graph_ql.dart';
+import '../../routes/go_routes.dart';
 
 class ServicesScreen extends StatelessWidget {
   const ServicesScreen({super.key});
@@ -35,13 +36,13 @@ class ServicesScreen extends StatelessWidget {
           ListTile(
             title: const TextW("Statements"),
             onTap: () {
-              Get.to(() => const StatementScreen());
+              context.goNamed(Routes.statements);
             },
           ),
           ListTile(
             title: const TextW("Contacts"),
             onTap: () {
-              Get.to(() => const ContactsScreen());
+              context.goNamed(Routes.contacts);
             },
           ),
         ],
