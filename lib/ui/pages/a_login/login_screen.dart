@@ -1,6 +1,4 @@
 import 'package:abhedya_flutter_assessment/a_utils/extensions.dart';
-import 'package:abhedya_flutter_assessment/ui/views/a_login/bloc/login_bloc.dart';
-import 'package:abhedya_flutter_assessment/ui/views/b_main/main_screen.dart';
 import 'package:abhedya_flutter_assessment/ui/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,6 +9,8 @@ import '../../../a_utils/colors.dart';
 import '../../../a_utils/text_formatters.dart';
 import '../../routes/go_routes.dart';
 import '../../widgets/lottie_widgets.dart';
+import '../b_main/main_screen.dart';
+import 'bloc/login_bloc.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -64,18 +64,14 @@ class LoginScreen extends StatelessWidget {
                           onPressed: () async {
                             if (userTC.text.length > 2 &&
                                 pswdTC.text.length > 2) {
-                              // context.pop();
-                              // context.pop();
                               Routes.navigateTo(context,
                                   routeName: Routes.main,
                                   screen: MainScreen(userTC.text));
-
                               userTC.dispose();
                               pswdTC.dispose();
-                              // Get.to(MainScreen(userTC.text));
                             } else {}
                           },
-                          child: const TextW("Login")),
+                          child: const TextW("Continue")),
                       const Spacer(flex: 2),
                     ],
                   ),
@@ -105,10 +101,8 @@ class LoginScreen extends StatelessWidget {
     bool obscureText = true;
     return BlocBuilder<LoginBloc, LoginState>(
       builder: (context, state) {
-        if (state is PasswordShowLoginState) {
-          obscureText = false;
-        } else {
-          obscureText = true;
+        if (state is LoginPasswordObscureState) {
+          obscureText = state.obscureText;
         }
         return TextField(
           controller: pswdTC,
@@ -120,10 +114,10 @@ class LoginScreen extends StatelessWidget {
               labelText: "password",
               suffixIcon: IconButton(
                   onPressed: () {
-                    obscureText = !obscureText;
+                   
                     context
                         .read<LoginBloc>()
-                        .add(PasswordToggleLoginEvent(obscureText));
+                        .add(LoginPasswordToggleEvent(!obscureText));
                   },
                   icon: Icon(
                       obscureText ? MdiIcons.eyeOffOutline : MdiIcons.eye,

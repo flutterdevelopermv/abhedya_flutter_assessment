@@ -1,10 +1,10 @@
+import 'package:abhedya_flutter_assessment/ui/pages/e_services/services_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../pages/a_login/login_screen.dart';
+import '../pages/b_main/main_screen.dart';
 import '../transactions_screen.dart';
-import '../views/a_login/login_screen.dart';
-import '../views/b_main/main_screen.dart';
-import '../views/e_services/services_screen.dart';
 
 class Routes {
   static const initialRoute = '/';
@@ -46,7 +46,7 @@ class Routes {
   ];
 
   //
- static void navigateTo(BuildContext context,
+  static void navigateTo(BuildContext context,
       {required String routeName, required Widget screen}) {
     context.goNamed(routeName, extra: screen);
   }

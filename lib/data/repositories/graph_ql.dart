@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 class GraphQLApi {
-
   static final ValueNotifier<GraphQLClient> client = ValueNotifier(GraphQLClient(
 
       /// **NOTE** The default store is the InMemoryStore, which does NOT persist to disk
       cache: GraphQLCache(),
-      link: HttpLink('http://192.168.1.151:4000/'
-          // 'http://192.168.0.102:4000/',
-          // 'http://localhost:4000/',
-          )));
+      link: HttpLink(
+        // 'http://192.168.1.151:4000/'
+        'http://192.168.0.102:4000/',
+        // 'http://localhost:4000/',
+      )));
 
   static const String home = r'''
 query getHome {

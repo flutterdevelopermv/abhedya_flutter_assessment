@@ -5,13 +5,9 @@ part 'login_event.dart';
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  LoginBloc() : super(PasswordLoginState()) {
-    on<PasswordToggleLoginEvent>((event, emit) {
-      if (event.isObscure) {
-        emit(PasswordHideLoginState());
-      } else {
-        emit(PasswordShowLoginState());
-      }
+  LoginBloc() : super(LoginPasswordObscureState(true)) {
+    on<LoginPasswordToggleEvent>((event, emit) {
+      emit(LoginPasswordObscureState(event.obscureText));
     });
 
     on<LoginButtonEvent>((event, emit) {
