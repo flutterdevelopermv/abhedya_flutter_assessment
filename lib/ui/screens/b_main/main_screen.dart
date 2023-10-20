@@ -1,14 +1,13 @@
-import 'package:abhedya_flutter_assessment/ui/pages/b_main/bloc/main_bloc.dart';
-import 'package:abhedya_flutter_assessment/ui/pages/c_home/bloc/home_bloc.dart';
-import 'package:abhedya_flutter_assessment/ui/pages/c_home/home_screen.dart';
-import 'package:abhedya_flutter_assessment/ui/pages/d_accounts/bloc/accounts_bloc.dart';
-import 'package:abhedya_flutter_assessment/ui/pages/e_services/services_screen.dart';
 import 'package:abhedya_flutter_assessment/ui/widgets/svg_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
+import '../c_home/bloc/home_bloc.dart';
+import '../c_home/home_screen.dart';
 import '../d_accounts/account_screen.dart';
+import '../d_accounts/bloc/accounts_bloc.dart';
+import '../e_services/services_screen.dart';
+import 'bloc/main_bloc.dart';
 
 class MainScreen extends StatelessWidget {
   final String username;

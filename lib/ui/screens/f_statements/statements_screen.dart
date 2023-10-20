@@ -1,5 +1,4 @@
 import 'package:abhedya_flutter_assessment/data/models/statement.dart';
-import 'package:abhedya_flutter_assessment/ui/pages/f_statements/bloc/statement_bloc.dart';
 import 'package:abhedya_flutter_assessment/ui/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,6 +7,7 @@ import 'package:intl/intl.dart';
 
 import '../../../data/repositories/graph_ql.dart';
 import '../../widgets/query_builder.dart';
+import 'bloc/statement_bloc.dart';
 
 class StatementsScreen extends StatelessWidget {
   const StatementsScreen({Key? key}) : super(key: key);

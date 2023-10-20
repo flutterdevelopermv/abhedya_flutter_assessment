@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../pages/a_login/login_screen.dart';
-import '../pages/b_main/main_screen.dart';
-import '../pages/f_statements/statements_screen.dart';
-import '../pages/g_contacts/contacts_screen.dart';
+import '../screens/a_login/login_screen.dart';
+import '../screens/b_main/main_screen.dart';
+import '../screens/f_statements/statements_screen.dart';
+import '../screens/g_contacts/contacts_screen.dart';
 import '../transactions_screen.dart';
 
-class Routes {
+class Routes {``
   static const initialRoute = '/';
   //
   static const login = 'login';

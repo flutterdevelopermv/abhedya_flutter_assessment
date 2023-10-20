@@ -1,5 +1,4 @@
 import 'package:abhedya_flutter_assessment/data/models/account.dart';
-import 'package:abhedya_flutter_assessment/ui/pages/d_accounts/bloc/accounts_bloc.dart';
 import 'package:abhedya_flutter_assessment/ui/routes/go_routes.dart';
 import 'package:abhedya_flutter_assessment/ui/transactions_screen.dart';
 import 'package:abhedya_flutter_assessment/ui/widgets/text_widget.dart';
@@ -10,6 +9,7 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 
 import '../../../data/repositories/graph_ql.dart';
 import '../../widgets/query_builder.dart';
+import 'bloc/accounts_bloc.dart';
 
 class AccountScreen extends StatelessWidget {
   const AccountScreen({super.key});

@@ -1,11 +1,11 @@
 import 'package:abhedya_flutter_assessment/data/models/contact.dart';
-import 'package:abhedya_flutter_assessment/ui/pages/g_contacts/bloc/contacts_bloc.dart';
 import 'package:abhedya_flutter_assessment/ui/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import '../../../data/repositories/graph_ql.dart';
 import '../../widgets/query_builder.dart';
+import 'bloc/contacts_bloc.dart';
 
 class ContactsScreen extends StatelessWidget {
   const ContactsScreen({Key? key}) : super(key: key);

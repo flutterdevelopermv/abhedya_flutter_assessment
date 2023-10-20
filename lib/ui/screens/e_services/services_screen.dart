@@ -1,9 +1,9 @@
-import 'package:abhedya_flutter_assessment/ui/pages/g_contacts/contacts_screen.dart';
 import 'package:abhedya_flutter_assessment/ui/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../routes/go_routes.dart';
 import '../f_statements/statements_screen.dart';
+import '../g_contacts/contacts_screen.dart';
 
 class ServicesScreen extends StatelessWidget {
   const ServicesScreen({super.key});
