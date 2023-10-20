@@ -1,13 +1,20 @@
 part of 'login_bloc.dart';
 
-class LoginState {}
+class LoginState extends Equatable {
+  const LoginState();
+
+  @override
+  List<Object> get props => [];
+}
 
 //
 class LoginPasswordObscureState extends LoginState {
   final bool obscureText;
-  LoginPasswordObscureState(this.obscureText);
-}
+  const LoginPasswordObscureState(this.obscureText);
 
+  @override
+  List<Object> get props => [obscureText];
+}
 
 //
 class LoginButtonState extends LoginState {}

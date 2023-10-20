@@ -74,7 +74,7 @@ class StatementsScreen extends StatelessWidget {
       padding: const EdgeInsets.all(3),
       child: ListTile(
           tileColor: Colors.black.withOpacity(0.05),
-          title: TextW(statemet.description),
+          title: TextW(statemet.description ?? ''),
           trailing: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -85,7 +85,7 @@ class StatementsScreen extends StatelessWidget {
               TextW(DateFormat("dd-M-yyyy").format(statemet.date)),
             ],
           ),
-          subtitle: TextW(statemet.description)),
+          subtitle: TextW(statemet.description ?? '')),
     );
   }
 }

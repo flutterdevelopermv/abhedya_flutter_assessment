@@ -4,9 +4,7 @@ import 'package:abhedya_flutter_assessment/ui/transactions_screen.dart';
 import 'package:abhedya_flutter_assessment/ui/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:graphql_flutter/graphql_flutter.dart';
-
 import '../../../data/repositories/graph_ql.dart';
 import '../../widgets/query_builder.dart';
 import 'bloc/accounts_bloc.dart';
@@ -55,7 +53,7 @@ class AccountScreen extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 2),
       child: Card(
           child: ListTile(
-        title: TextW(account.accountHolder),
+        title: TextW(account.accountHolder ?? ''),
         subtitle: TextW(account.accountNumber),
         trailing: Column(
           mainAxisAlignment: MainAxisAlignment.center,

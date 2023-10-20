@@ -2,7 +2,7 @@ import 'package:intl/intl.dart';
 
 class Statement {
   DateTime date;
-  String description;
+  String? description;
   double amount;
 
   Statement({
@@ -17,11 +17,6 @@ class Statement {
         amount: json["amount"]?.toDouble(),
       );
 
-  // Map<String, dynamic> toMap() => {
-  //       "date": date,
-  //       "description": description,
-  //       "amount": amount,
-  //     };
 
   static List<Statement> getList(Map json) {
     var list = json['statements'] as List?;

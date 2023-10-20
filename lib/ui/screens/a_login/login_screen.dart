@@ -21,7 +21,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-       create: (context) => LoginBloc(),
+      create: (context) => LoginBloc(),
       child: Scaffold(
         body: Container(
           width: double.maxFinite,
@@ -54,8 +54,7 @@ class LoginScreen extends StatelessWidget {
                     children: [
                       const Align(
                         alignment: Alignment.topLeft,
-                        child:
-                            TextW("Login", textScaleFactor: 2, isBold: true),
+                        child: TextW("Login", textScaleFactor: 2, isBold: true),
                       ),
                       const Spacer(flex: 1),
                       usernameW(),

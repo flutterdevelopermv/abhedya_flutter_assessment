@@ -1,10 +1,7 @@
 import 'package:abhedya_flutter_assessment/data/repositories/graph_ql.dart';
-
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-
 import 'package:go_router/go_router.dart';
-
 import 'ui/routes/go_routes.dart';
 
 Future<void> main() async {

@@ -10,4 +10,7 @@ sealed class ContactsEvent extends Equatable {
 final class ContactsFetchEvent extends ContactsEvent {
   final Map<String, dynamic> data;
   const ContactsFetchEvent(this.data);
+
+  @override
+  List<Object> get props => [data];
 }

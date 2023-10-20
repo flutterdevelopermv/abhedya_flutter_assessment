@@ -1,30 +1,52 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
+// import 'package:abhedya_flutter_assessment/data/models/profile.dart';
+// import 'package:abhedya_flutter_assessment/ui/screens/c_home/bloc/home_bloc.dart';
+// import 'package:bloc_test/bloc_test.dart';
+// import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
+// void main() {
+//   group('HomeBloc', () {
+//     late HomeBloc homeBloc;
 
-import 'package:abhedya_flutter_assessment/main.dart';
+//     setUp(() {
+//       homeBloc = HomeBloc();
+//     });
 
-void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+//     test('Initial state is HomeBloc', () {
+//       expect(homeBloc.state, HomeProfileInitial());
+//     });
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+//     //
+//     var sucessProfile = {
+//       "home": {
+//         "name": "John Doe",
+//         "accountNumber": "1234567890",
+//         "balance": 2500.5,
+//         "currency": "USD"
+//       }
+//     };
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+//     var errorProfile = {
+//       "home": {
+//         "name": "John Doe",
+//         "accountNumber": "1234567890",
+//         "balance": "2500.5", // Balance should be numeric
+//         "currency": "USD"
+//       }
+//     };
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
-  });
-}
+//     blocTest(
+//       "Testing HomeProfile States",
+//       build: () => homeBloc,
+//       act: (bloc) {
+//         bloc.add(HomeProfileEvent(sucessProfile));
+//         bloc.add(HomeProfileEvent(errorProfile));
+//       },
+//       expect: () {
+//         return [
+//           HomeProfileSuccess(Profile.fromMap(sucessProfile["home"]!)),
+//           HomeProfileError(errorProfile)
+//         ];
+//       },
+//     );
+//   });
+// }

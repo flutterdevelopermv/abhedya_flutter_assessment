@@ -88,24 +88,24 @@ query getStatements {
 ''';
 
   // //
-  // static Future<QueryResult> getHome(BuildContext context) async {
-  //   // Get the GraphQL client from the context
-  //   GraphQLClient graphqlClient = GraphQLClient(
+  static Future<QueryResult> get(String query) async {
+    // Get the GraphQL client from the context
+    GraphQLClient graphqlClient = GraphQLClient(
 
-  //       /// **NOTE** The default store is the InMemoryStore, which does NOT persist to disk
-  //       cache: GraphQLCache(),
-  //       link: HttpLink(
-  //         'http://192.168.1.151:4000/',
-  //         // 'http://localhost:4000/',
-  //       ));
+        /// **NOTE** The default store is the InMemoryStore, which does NOT persist to disk
+        cache: GraphQLCache(),
+        link: HttpLink(
+          // 'http://192.168.1.151:4000/',
+          'http://localhost:4000/',
+        ));
 
-  //   // Create a query options object with your query and variables
-  //   QueryOptions options = QueryOptions(
-  //     document: gql(home), // this is the query string you just created
-  //   );
+    // Create a query options object with your query and variables
+    QueryOptions options = QueryOptions(
+      document: gql(query), // this is the query string you just created
+    );
 
-  //   // Execute the query and return the result
-  //   QueryResult result = await graphqlClient.query(options);
-  //   return result;
-  // }
+    // Execute the query and return the result
+    QueryResult result = await graphqlClient.query(options);
+    return result;
+  }
 }

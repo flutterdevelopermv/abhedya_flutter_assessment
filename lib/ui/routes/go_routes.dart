@@ -6,7 +6,7 @@ import '../screens/f_statements/statements_screen.dart';
 import '../screens/g_contacts/contacts_screen.dart';
 import '../transactions_screen.dart';
 
-class Routes {``
+class Routes {
   static const initialRoute = '/';
   //
   static const login = 'login';

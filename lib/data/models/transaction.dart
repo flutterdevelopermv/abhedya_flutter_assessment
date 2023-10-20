@@ -1,6 +1,6 @@
 class Transaction {
   DateTime date;
-  String description;
+  String? description;
   double amount;
   String fromAccount;
   String toAccount;
@@ -21,14 +21,7 @@ class Transaction {
         toAccount: json["toAccount"],
       );
 
-  Map<String, dynamic> toMap() => {
-        "date":
-            "${date.year.toString().padLeft(4, '0')}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}",
-        "description": description,
-        "amount": amount,
-        "fromAccount": fromAccount,
-        "toAccount": toAccount,
-      };
+
 
   static List<Transaction> getList(Map json) {
     var list = json['transactions'] as List?;

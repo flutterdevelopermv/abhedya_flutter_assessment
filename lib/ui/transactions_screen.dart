@@ -90,7 +90,7 @@ class _TransactionsScreenState extends State<TransactionsScreen>
                     TextW(entry.key,
                         padding: const EdgeInsets.symmetric(
                             horizontal: 5, vertical: 7.5)),
-                    TextW(entry.value,
+                    TextW(entry.value ?? "",
                         isBold: true,
                         padding: const EdgeInsets.symmetric(
                             horizontal: 5, vertical: 7.5)),
@@ -128,7 +128,7 @@ class TransactionsView extends StatelessWidget {
                         title: TextW(
                             "${transaction.fromAccount} to ${transaction.toAccount}",
                             isBold: true),
-                        subtitle: TextW(transaction.description),
+                        subtitle: TextW(transaction.description ?? ''),
                         trailing: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [

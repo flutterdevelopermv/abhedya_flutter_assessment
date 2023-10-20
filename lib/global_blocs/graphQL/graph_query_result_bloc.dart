@@ -17,19 +17,18 @@ class QueryResultBloc extends Bloc<QueryResultEvent, QueryResultState> {
         } else {
           final connectivityResult = await (Connectivity().checkConnectivity());
           if (connectivityResult == ConnectivityResult.none) {
-            emit(const QueryNetworkLost());
+            emit(QueryNetworkLost());
           } else if (event.result.exception?.graphqlErrors.isNotEmpty == true) {
             emit(QueryApiFailure(
                 event.result.exception!.graphqlErrors.first.message));
           } else if (event.result.exception?.linkException != null) {
-            emit(QueryApiFailure(
-                event.result.exception!.graphqlErrors.first.message));
+            emit(QueryLinkException(event.result.exception!.linkException!));
           } else {
-            emit(const QueryUnknownError());
+            emit(QueryUnknownError());
           }
         }
       } catch (e) {
-        emit(const QueryUnknownError());
+        emit(QueryUnknownError());
       }
     });
   }

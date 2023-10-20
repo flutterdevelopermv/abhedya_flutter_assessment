@@ -1,16 +1,29 @@
 // import 'dart:math';
+import 'package:equatable/equatable.dart';
+
 import 'transaction.dart';
 
-class Profile {
-  String name;
-  String accountNumber;
-  double balance;
-  String currency;
-  Address address;
-  List<Transaction> recentTransactions;
-  List<Transaction> upcomingBills;
+class Profile extends Equatable {
+  final String name;
+  final String accountNumber;
+  final double balance;
+  final String currency;
+  final Address? address;
+  final List<Transaction> recentTransactions;
+  final List<Transaction> upcomingBills;
 
-  Profile({
+  @override
+  List<Object?> get props => [
+        name,
+        accountNumber,
+        balance,
+        currency,
+        address,
+        recentTransactions,
+        upcomingBills,
+      ];
+
+  const Profile({
     required this.name,
     required this.accountNumber,
     required this.balance,
@@ -26,7 +39,8 @@ class Profile {
       accountNumber: json["accountNumber"],
       balance: json["balance"]?.toDouble(),
       currency: json["currency"],
-      address: Address.fromMap(json["address"]),
+      address:
+          json["address"] == null ? null : Address.fromMap(json["address"]),
       recentTransactions: List<Transaction>.from(
           (json["recentTransactions"] ?? []).map((x) => Transaction.fromMap(x)))
         ..sort((a, b) => b.date.compareTo(a.date)),
@@ -35,14 +49,6 @@ class Profile {
         ..sort((a, b) => a.date.compareTo(b.date)),
     );
   }
-
-  Map<String, dynamic> toMap() => {
-        "name": name,
-        "accountNumber": accountNumber,
-        "balance": balance,
-        "currency": currency,
-        "address": address.toMap(),
-      };
 
   //
 }

@@ -1,11 +1,17 @@
-class Account {
-  String id;
-  String accountNumber;
-  String accountType;
-  double balance;
-  String accountHolder;
+import 'package:equatable/equatable.dart';
 
-  Account({
+class Account extends Equatable {
+   String id;
+   String accountNumber;
+   String accountType;
+   double balance;
+   String? accountHolder;
+
+  @override
+  List<Object?> get props =>
+      [id, accountNumber, accountType, balance, accountHolder];
+
+   Account({
     required this.id,
     required this.accountNumber,
     required this.accountType,
@@ -20,14 +26,6 @@ class Account {
         balance: json["balance"]?.toDouble(),
         accountHolder: json["accountHolder"],
       );
-
-  Map<String, dynamic> toMap() => {
-        "id": id,
-        "accountNumber": accountNumber,
-        "accountType": accountType,
-        "balance": balance,
-        "accountHolder": accountHolder,
-      };
 
   //
   static List<Account> getList(Map json) {

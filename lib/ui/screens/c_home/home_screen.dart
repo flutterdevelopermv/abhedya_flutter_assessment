@@ -96,7 +96,7 @@ class HomeScreen extends StatelessWidget {
               title: TextW(
                   "${recentTransaction.fromAccount} to ${recentTransaction.toAccount}",
                   isBold: true),
-              subtitle: TextW(recentTransaction.description),
+              subtitle: TextW(recentTransaction.description??''),
               trailing: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -125,7 +125,7 @@ class HomeScreen extends StatelessWidget {
               title: TextW(
                   "${upcomingBill.fromAccount} to ${upcomingBill.toAccount}",
                   isBold: true),
-              subtitle: TextW(upcomingBill.description),
+              subtitle: TextW(upcomingBill.description??''),
               trailing: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

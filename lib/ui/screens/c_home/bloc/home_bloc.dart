@@ -1,4 +1,5 @@
 import 'package:abhedya_flutter_assessment/data/models/profile.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:meta/meta.dart';
