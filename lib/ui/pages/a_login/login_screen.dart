@@ -20,40 +20,42 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        width: double.maxFinite,
-        height: double.maxFinite,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [HexColor("#B93B72"), HexColor("#CA6A6B")]),
-        ),
-        child: Column(
-          children: [
-            Expanded(
-              flex: 4,
-              child: Lotties.loginMale(),
-            ),
-            Expanded(
-              flex: 7,
-              child: Container(
-                width: double.maxFinite,
-                height: double.maxFinite,
-                padding: EdgeInsets.symmetric(horizontal: 48.s, vertical: 20.s),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(30.s),
-                        topRight: Radius.circular(30.s)),
-                    color: Colors.white),
-                child: BlocProvider(
-                  create: (context) => LoginBloc(),
+    return BlocProvider(
+       create: (context) => LoginBloc(),
+      child: Scaffold(
+        body: Container(
+          width: double.maxFinite,
+          height: double.maxFinite,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [HexColor("#B93B72"), HexColor("#CA6A6B")]),
+          ),
+          child: Column(
+            children: [
+              Expanded(
+                flex: 4,
+                child: Lotties.loginMale(),
+              ),
+              Expanded(
+                flex: 7,
+                child: Container(
+                  width: double.maxFinite,
+                  height: double.maxFinite,
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 48.s, vertical: 20.s),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(30.s),
+                          topRight: Radius.circular(30.s)),
+                      color: Colors.white),
                   child: Column(
                     children: [
                       const Align(
                         alignment: Alignment.topLeft,
-                        child: TextW("Login", textScaleFactor: 2, isBold: true),
+                        child:
+                            TextW("Login", textScaleFactor: 2, isBold: true),
                       ),
                       const Spacer(flex: 1),
                       usernameW(),
@@ -77,8 +79,8 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -114,7 +116,6 @@ class LoginScreen extends StatelessWidget {
               labelText: "password",
               suffixIcon: IconButton(
                   onPressed: () {
-                   
                     context
                         .read<LoginBloc>()
                         .add(LoginPasswordToggleEvent(!obscureText));

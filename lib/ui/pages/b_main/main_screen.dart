@@ -1,4 +1,8 @@
 import 'package:abhedya_flutter_assessment/ui/pages/b_main/bloc/main_bloc.dart';
+import 'package:abhedya_flutter_assessment/ui/pages/c_home/bloc/home_bloc.dart';
+import 'package:abhedya_flutter_assessment/ui/pages/c_home/home_screen.dart';
+import 'package:abhedya_flutter_assessment/ui/pages/d_accounts/bloc/accounts_bloc.dart';
+import 'package:abhedya_flutter_assessment/ui/pages/e_services/services_screen.dart';
 import 'package:abhedya_flutter_assessment/ui/widgets/svg_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,12 +17,25 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int currentIndex = 0;
-    return BlocProvider(
-      create: (context) => MainBloc(),
-      child: BlocBuilder<MainBloc, MainState>(
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => MainBloc(),
+        ),
+        BlocProvider(
+          create: (context) => HomeBloc(),
+        ),
+        BlocProvider(
+          create: (context) => AccountsBloc(),
+        ),
+      ],
+      child:
+          // const Scaffold(body: Center(child: TextW("data")))
+
+          BlocBuilder<MainBloc, MainState>(
         builder: (context, state) {
           if (state is BottomBarState) {
-            currentIndex = state.index;
+            currentIndex = state.currentIndex;
           }
           return Scaffold(
               body: MainPageModel.list(username)[currentIndex].page,
@@ -61,7 +78,7 @@ class MainPageModel {
   //
   static List<MainPageModel> list(String username) => [
         MainPageModel(
-            page: MainScreen(username),
+            page: HomeScreen(username),
             name: "Home",
             activeIconName: SvgAssets.home,
             inActiveIconName: SvgAssets.homeOutline),
@@ -71,7 +88,7 @@ class MainPageModel {
             activeIconName: SvgAssets.viewList,
             inActiveIconName: SvgAssets.viewListOutline),
         MainPageModel(
-            page: const AccountScreen(),
+            page: const ServicesScreen(),
             name: "Services",
             activeIconName: SvgAssets.shape,
             inActiveIconName: SvgAssets.shapeOutline),

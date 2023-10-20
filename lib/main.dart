@@ -22,14 +22,12 @@ class MyApp extends StatelessWidget {
       client: GraphQLApi.client,
       child: MaterialApp.router(
         title: 'Phaneendra Assessment',
-
         routerConfig: GoRouter(
             initialLocation: Routes.initialRoute, routes: Routes.routesTree),
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        // home: LoginScreen(),
       ),
     );
   }
