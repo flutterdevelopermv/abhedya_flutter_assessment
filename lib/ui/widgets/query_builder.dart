@@ -39,36 +39,61 @@ class QueryBlocBuilder extends StatelessWidget {
               return BlocBuilder<QueryResultBloc, QueryResultState>(
                 builder: (context, state) {
                   context.read<QueryResultBloc>().add(QueryResultEvent(result));
-                  if (state is QuerySuccess) {
-                    return successW(context, state.data);
+                  if (state is QueryNetworkLost) {
+                    return networkLostW ?? PlaceHolderW.networkLostW;
                   } else if (state is QueryLoading) {
-                    return loadingW ??
-                        const SizedBox(
-                            height: 40, child: CircularProgressIndicator());
-                  } else if (state is QueryNetworkLost) {
-                    return networkLostW ??
-                        const TextW(
-                            "Network Error, Please connect to the inernet");
+                    return loadingW ?? PlaceHolderW.loadingW;
                   } else if (state is QueryApiFailure) {
                     return apiFailureW != null
                         ? apiFailureW!(state.message)
-                        : TextW(state.message);
+                        : PlaceHolderW.apiFailureW(state.message);
                   } else if (state is QueryLinkException) {
                     return linkExceptionW != null
                         ? linkExceptionW!(state.linkException)
-                        : const TextW(
-                            "Unable to fetch details 'Link Exception'");
+                        : PlaceHolderW.linkExceptionW;
                   } else if (state is QueryUnknownError) {
-                    return unknownErrorW ??
-                        const TextW(
-                            "Unable to fetch details, Please try again later");
+                    return unknownErrorW ?? PlaceHolderW.unknownErrorW;
+                  } else if (state is QuerySuccess) {
+                    return successW(context, state.data);
                   }
 
-                  return intialW ?? const TextW("Fetching details..");
+                  return intialW ?? PlaceHolderW.initialW;
                 },
               );
             }),
       ),
     );
   }
+}
+
+//
+class PlaceHolderW {
+  static const initialW =
+      TextW("Fetching details..", key: PlaceHolderKeys.initialW);
+  static const unknownErrorW = TextW(
+      "Unable to fetch details, Please try again later",
+      key: PlaceHolderKeys.unknownErrorW);
+  static const linkExceptionW = TextW(
+      "Unable to fetch details 'Link Exception'",
+      key: PlaceHolderKeys.linkExceptionW);
+  static Widget apiFailureW(String message) =>
+      TextW(message, key: PlaceHolderKeys.apiFailureW);
+  static const networkLostW = TextW(
+      "Network Error, Please connect to the inernet",
+      key: PlaceHolderKeys.networkLostW);
+  static const loadingW = SizedBox(
+      height: 40,
+      key: PlaceHolderKeys.loadingW,
+      child: CircularProgressIndicator());
+}
+
+//
+class PlaceHolderKeys {
+  static const initialW = Key('initialW');
+  static const unknownErrorW = Key('unknownErrorW');
+  static const linkExceptionW = Key('linkExceptionW');
+  static const apiFailureW = Key('apiFailureW');
+  static const networkLostW = Key('networkLostW');
+  static const loadingW = Key('loadingW');
+  
 }

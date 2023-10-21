@@ -17,37 +17,46 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const TextW("Home")),
-      body: QueryBlocBuilder(
-          options: QueryOptions(
-            document: gql(GraphQLApi.home),
-          ),
-          successW: (context, data) {
-            return BlocBuilder<HomeBloc, HomeState>(
-              builder: (context, state) {
-                context.read<HomeBloc>().add(HomeProfileEvent(data));
-                if (state is HomeProfileSuccess) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SingleChildScrollView(
-                      child: Column(children: [
-                        usernameW(),
-                        accountDetailsW(state.profile),
-                        recentTransactionsW(state.profile),
-                        upcomingBillsW(state.profile),
-                      ]),
-                    ),
-                  );
-                } else if (state is HomeProfileError) {
-                  return Center(
-                    child: TextW(state.data.toString(),
-                        maxLines: 3, overflow: TextOverflow.ellipsis),
-                  );
-                } else {
-                  return const SizedBox();
-                }
-              },
-            );
-          }),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            usernameW(),
+            Expanded(
+              child: QueryBlocBuilder(
+                  options: QueryOptions(
+                    document: gql(GraphQLApi.home),
+                  ),
+                  successW: (context, data) {
+                    return BlocBuilder<HomeBloc, HomeState>(
+                      builder: (context, state) {
+                        context.read<HomeBloc>().add(HomeProfileEvent(data));
+                        if (state is HomeProfileSuccess) {
+                          return SingleChildScrollView(
+                            child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  accountDetailsW(state.profile),
+                                  recentTransactionsW(state.profile),
+                                  upcomingBillsW(state.profile),
+                                  const SizedBox(height: 50),
+                                ]),
+                          );
+                        } else if (state is HomeProfileError) {
+                          return Center(
+                            child: TextW(state.data.toString(),
+                                maxLines: 3, overflow: TextOverflow.ellipsis),
+                          );
+                        } else {
+                          return const SizedBox();
+                        }
+                      },
+                    );
+                  }),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -96,7 +105,7 @@ class HomeScreen extends StatelessWidget {
               title: TextW(
                   "${recentTransaction.fromAccount} to ${recentTransaction.toAccount}",
                   isBold: true),
-              subtitle: TextW(recentTransaction.description??''),
+              subtitle: TextW(recentTransaction.description ?? ''),
               trailing: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -125,7 +134,7 @@ class HomeScreen extends StatelessWidget {
               title: TextW(
                   "${upcomingBill.fromAccount} to ${upcomingBill.toAccount}",
                   isBold: true),
-              subtitle: TextW(upcomingBill.description??''),
+              subtitle: TextW(upcomingBill.description ?? ''),
               trailing: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

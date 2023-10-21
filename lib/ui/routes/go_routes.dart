@@ -20,6 +20,7 @@ class Routes {
     GoRoute(
         path: initialRoute,
         name: login,
+      
         builder: (context, state) => LoginScreen(),
         routes: [
           GoRoute(

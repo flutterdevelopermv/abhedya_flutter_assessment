@@ -15,6 +15,7 @@ class ServicesScreen extends StatelessWidget {
       body: Column(
         children: [
           ListTile(
+            key: const Key("Loans"),
             title: const TextW("Loans"),
             onTap: () {
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -30,6 +31,7 @@ class ServicesScreen extends StatelessWidget {
             },
           ),
           ListTile(
+            key: const Key("Statements"),
             title: const TextW("Statements"),
             onTap: () {
               Routes.navigateTo(context,
@@ -38,6 +40,7 @@ class ServicesScreen extends StatelessWidget {
             },
           ),
           ListTile(
+            key: const Key("Contacts"),
             title: const TextW("Contacts"),
             onTap: () {
               Routes.navigateTo(context,
