@@ -1,17 +1,15 @@
 import 'dart:developer';
-import 'dart:ui';
-
 import 'package:abhedya_flutter_assessment/data/repositories/graph_ql.dart';
 import 'package:abhedya_flutter_assessment/global_blocs/graphQL/graph_query_result_bloc.dart';
 import 'package:abhedya_flutter_assessment/ui/screens/b_main/bloc/main_bloc.dart';
 import 'package:abhedya_flutter_assessment/ui/screens/c_home/bloc/home_bloc.dart';
 import 'package:abhedya_flutter_assessment/ui/screens/c_home/home_screen.dart';
 import 'package:abhedya_flutter_assessment/ui/widgets/query_builder.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+// ignore: unused_import
 import 'package:nock/nock.dart';
 
 void main() {

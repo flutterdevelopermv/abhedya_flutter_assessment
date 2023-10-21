@@ -47,25 +47,23 @@ class StatementsScreen extends StatelessWidget {
 
   //
   Widget yearWiseStatementsW(Map<int, List<Statement>> sortedSatements) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          for (var year in sortedSatements.keys)
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Card(
-                child: ExpansionTile(
-                    title:
-                        TextW("Year $year", isBold: true, textScaleFactor: 1.2),
-                    shape: const Border(),
-                    children: [
-                      for (var statemet in sortedSatements[year]!)
-                        statementW(statemet)
-                    ]),
-              ),
-            )
-        ],
-      ),
+    return ListView(
+      children: [
+        for (var year in sortedSatements.keys)
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Card(
+              child: ExpansionTile(
+                  title:
+                      TextW("Year $year", isBold: true, textScaleFactor: 1.2),
+                  shape: const Border(),
+                  children: [
+                    for (var statemet in sortedSatements[year]!)
+                      statementW(statemet)
+                  ]),
+            ),
+          )
+      ],
     );
   }
 

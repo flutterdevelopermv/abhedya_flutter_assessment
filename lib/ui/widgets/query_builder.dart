@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
+/// Shortcut Widget for Query & QueryResultBloc to reduce boilerplate
 class QueryBlocBuilder extends StatelessWidget {
   final QueryOptions<Object?> options;
   final Widget Function(BuildContext context, Map<String, dynamic> data)
@@ -95,5 +96,4 @@ class PlaceHolderKeys {
   static const apiFailureW = Key('apiFailureW');
   static const networkLostW = Key('networkLostW');
   static const loadingW = Key('loadingW');
-  
 }

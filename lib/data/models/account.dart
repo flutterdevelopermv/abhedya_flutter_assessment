@@ -1,17 +1,18 @@
 import 'package:equatable/equatable.dart';
 
+// ignore: must_be_immutable
 class Account extends Equatable {
-   String id;
-   String accountNumber;
-   String accountType;
-   double balance;
-   String? accountHolder;
+  String id;
+  String accountNumber;
+  String accountType;
+  double balance;
+  String? accountHolder;
 
   @override
   List<Object?> get props =>
       [id, accountNumber, accountType, balance, accountHolder];
 
-   Account({
+  Account({
     required this.id,
     required this.accountNumber,
     required this.accountType,

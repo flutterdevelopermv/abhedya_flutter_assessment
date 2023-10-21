@@ -12,7 +12,7 @@ import 'bloc/main_bloc.dart';
 class MainScreen extends StatelessWidget {
   final String username;
   const MainScreen(this.username, {Key? key}) : super(key: key);
-
+  
   @override
   Widget build(BuildContext context) {
     int currentIndex = 0;

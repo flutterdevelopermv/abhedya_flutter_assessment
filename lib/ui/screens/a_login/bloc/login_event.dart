@@ -24,3 +24,12 @@ class LoginButtonEvent extends LoginEvent {
   @override
   List<Object> get props => [username,password];
 }
+
+class LoginButtonErrorEvent extends LoginEvent {
+  final String message;
+
+  const LoginButtonErrorEvent(this.message);
+
+  @override
+  List<Object> get props => [message];
+}

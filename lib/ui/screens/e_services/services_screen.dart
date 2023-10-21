@@ -1,5 +1,6 @@
 import 'package:abhedya_flutter_assessment/ui/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import '../../routes/go_routes.dart';
 import '../f_statements/statements_screen.dart';
@@ -17,6 +18,7 @@ class ServicesScreen extends StatelessWidget {
           ListTile(
             key: const Key("Loans"),
             title: const TextW("Loans"),
+            leading: Icon(MdiIcons.handCoinOutline),
             onTap: () {
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content: const Align(
@@ -33,6 +35,7 @@ class ServicesScreen extends StatelessWidget {
           ListTile(
             key: const Key("Statements"),
             title: const TextW("Statements"),
+            leading: Icon(MdiIcons.cardBulletedOutline),
             onTap: () {
               Routes.navigateTo(context,
                   routeName: Routes.statements,
@@ -42,6 +45,7 @@ class ServicesScreen extends StatelessWidget {
           ListTile(
             key: const Key("Contacts"),
             title: const TextW("Contacts"),
+            leading: Icon(MdiIcons.cardAccountPhoneOutline),
             onTap: () {
               Routes.navigateTo(context,
                   routeName: Routes.contacts, screen: const ContactsScreen());

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:abhedya_flutter_assessment/a_utils/extensions.dart';
 import 'package:abhedya_flutter_assessment/ui/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +19,10 @@ class LoginScreen extends StatelessWidget {
 
   final userTC = TextEditingController();
   final pswdTC = TextEditingController();
+  final Gradient gradient = LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [HexColor("#B93B72"), HexColor("#CA6A6B")]);
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +32,7 @@ class LoginScreen extends StatelessWidget {
         body: Container(
           width: double.maxFinite,
           height: double.maxFinite,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [HexColor("#B93B72"), HexColor("#CA6A6B")]),
-          ),
+          decoration: BoxDecoration(gradient: gradient),
           child: Column(
             children: [
               Expanded(
@@ -50,31 +51,27 @@ class LoginScreen extends StatelessWidget {
                           topLeft: Radius.circular(30.s),
                           topRight: Radius.circular(30.s)),
                       color: Colors.white),
-                  child: Column(
-                    children: [
-                      const Align(
-                        alignment: Alignment.topLeft,
-                        child: TextW("Login", textScaleFactor: 2, isBold: true),
-                      ),
-                      const Spacer(flex: 1),
-                      usernameW(),
-                      const SizedBox(height: 25),
-                      passwordW(),
-                      const Spacer(flex: 2),
-                      ElevatedButton(
-                          onPressed: () async {
-                            if (userTC.text.length > 2 &&
-                                pswdTC.text.length > 2) {
-                              Routes.navigateTo(context,
-                                  routeName: Routes.main,
-                                  screen: MainScreen(userTC.text));
-                              userTC.dispose();
-                              pswdTC.dispose();
-                            } else {}
-                          },
-                          child: const TextW("Continue")),
-                      const Spacer(flex: 2),
-                    ],
+                  child: BlocBuilder<LoginBloc, LoginState>(
+                    builder: (context, state) {
+                      return Column(
+                        children: [
+                          const Align(
+                            alignment: Alignment.topLeft,
+                            child: TextW("Login",
+                                textScaleFactor: 2, isBold: true),
+                          ),
+                          const Spacer(),
+                          usernameW(),
+                          const SizedBox(height: 25),
+                          passwordW(context, state),
+                          const Spacer(),
+                          errorW(state),
+                          const Spacer(),
+                          continueW(context),
+                          const Spacer(flex: 2),
+                        ],
+                      );
+                    },
                   ),
                 ),
               ),
@@ -83,6 +80,43 @@ class LoginScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Widget continueW(BuildContext context) {
+    return InkWell(
+      child: Container(
+        height: 45,
+        width: 200,
+        decoration: BoxDecoration(
+            gradient: gradient, borderRadius: BorderRadius.circular(15)),
+        child: const Center(
+          child: TextW("Continue",
+              isBold: true,
+              isHeading: true,
+              isWhite: true,
+              textAlign: TextAlign.center),
+        ),
+      ),
+      onTap: () async {
+        await Future.delayed(const Duration(milliseconds: 300));
+        String errorText = "";
+        if (userTC.text.length > 2 && pswdTC.text.length > 2) {
+        
+          Routes.navigateTo(context,
+              routeName: Routes.main, screen: MainScreen(userTC.text));
+          userTC.dispose();
+          pswdTC.dispose();
+        } else {
+          errorText = "Invalid Credentials";
+        }
+        context.read<LoginBloc>().add(LoginButtonErrorEvent(errorText));
+      },
+    );
+  }
+
+  Widget errorW(LoginState state) {
+    return TextW(state is LoginButtonErrorSate ? state.message : "",
+        color: Colors.red);
   }
 
   //
@@ -98,36 +132,30 @@ class LoginScreen extends StatelessWidget {
   }
 
   //
-  Widget passwordW() {
+  Widget passwordW(BuildContext context, LoginState state) {
     bool obscureText = true;
-    return BlocBuilder<LoginBloc, LoginState>(
-      builder: (context, state) {
-        if (state is LoginPasswordObscureState) {
-          obscureText = state.obscureText;
-        }
-        return TextField(
-          controller: pswdTC,
-          inputFormatters: [TrimTextFormatter()],
-          obscureText: obscureText,
-          decoration: InputDecoration(
-              border: fieldBoarder(),
-              prefixIcon: Icon(MdiIcons.key, color: Colors.black54),
-              labelText: "password",
-              suffixIcon: IconButton(
-                  onPressed: () {
-                    context
-                        .read<LoginBloc>()
-                        .add(LoginPasswordToggleEvent(!obscureText));
-                  },
-                  icon: Icon(
-                      obscureText ? MdiIcons.eyeOffOutline : MdiIcons.eye,
-                      color: Colors.black26))),
-        );
-      },
+    if (state is LoginPasswordObscureState) {
+      obscureText = state.obscureText;
+    }
+
+    return TextField(
+      controller: pswdTC,
+      inputFormatters: [TrimTextFormatter()],
+      obscureText: obscureText,
+      decoration: InputDecoration(
+          border: fieldBoarder(),
+          prefixIcon: Icon(MdiIcons.key, color: Colors.black54),
+          labelText: "password",
+          suffixIcon: IconButton(
+              onPressed: () {
+                context
+                    .read<LoginBloc>()
+                    .add(LoginPasswordToggleEvent(!obscureText));
+              },
+              icon: Icon(obscureText ? MdiIcons.eyeOffOutline : MdiIcons.eye,
+                  color: Colors.black26))),
     );
   }
-
-  //
 
   //
   OutlineInputBorder fieldBoarder({Color? color}) {

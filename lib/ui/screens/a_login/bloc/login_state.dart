@@ -17,6 +17,11 @@ class LoginPasswordObscureState extends LoginState {
 }
 
 //
-class LoginButtonState extends LoginState {}
 
-class LoginButtonStateLoding extends LoginState {}
+class LoginButtonErrorSate extends LoginState {
+  final String message;
+ const LoginButtonErrorSate(this.message);
+ 
+  @override
+  List<Object> get props => [message];
+}

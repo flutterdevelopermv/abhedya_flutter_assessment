@@ -15,12 +15,12 @@ class Routes {
   static const contacts = 'contacts';
   static const transactions = 'transactions';
   //
+  static const services = 'services';
 
   static final routesTree = [
     GoRoute(
         path: initialRoute,
         name: login,
-      
         builder: (context, state) => LoginScreen(),
         routes: [
           GoRoute(
@@ -43,6 +43,7 @@ class Routes {
                     builder: (context, state) =>
                         state.extra as TransactionsScreen),
               ]),
+          
         ]),
   ];
 
